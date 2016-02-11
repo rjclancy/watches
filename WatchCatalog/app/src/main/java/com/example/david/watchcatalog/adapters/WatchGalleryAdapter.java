@@ -63,6 +63,7 @@ public class WatchGalleryAdapter extends BaseAdapter {
             //re-using if already here
         }
 
+        // Needs to be refatored, grid scroll to slow...Maybe use a holder
         imageView.setImageResource(watches.get(position).getImageId());
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setLayoutParams(new GridView.LayoutParams(setColumnParams(parent), setColumnParams(parent)));
