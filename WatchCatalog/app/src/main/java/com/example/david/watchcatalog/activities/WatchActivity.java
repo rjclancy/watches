@@ -82,12 +82,12 @@ public class WatchActivity extends AppCompatActivity {
                 R.anim.slide_up);
 
         slide_up.setDuration(700);
-        slide_up.setDuration(800);
-        slide_up.setDuration(900);
+        slide_up_1.setDuration(800);
+        slide_up_2.setDuration(900);
 
         name.setAnimation(slide_up);
         price.setAnimation(slide_up_1);
-        description.setAnimation(slide_up_1);
+        description.setAnimation(slide_up_2);
     }
 
     @Override
