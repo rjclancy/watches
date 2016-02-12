@@ -15,20 +15,23 @@
         android:layout_width="wrap_content"
         android:layout_height="175dp"
         android:layout_weight="0.48"
-        android:background="#ffffff"></android.support.v4.view.ViewPager>
+        android:background="#ffffff">
+
+    </android.support.v4.view.ViewPager>
 
     <ImageView
         android:id="@+id/watchesGrid"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp" />
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"/>
 
 
         <TextView
             android:id="@+id/watchesName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:padding="10dp"
             android:textColor="#000000" />
 
@@ -36,13 +39,13 @@
             android:id="@+id/watchesPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:padding="10dp" />
 
         <TextView
             android:id="@+id/watchesDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:padding="10dp" />
 </LinearLayout>

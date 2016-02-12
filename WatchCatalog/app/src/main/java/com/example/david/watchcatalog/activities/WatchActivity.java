@@ -13,9 +13,10 @@ import com.example.david.watchcatalog.R;
 import com.example.david.watchcatalog.adapters.WatchAdapter;
 import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.db.SQLiteHelper;
+import com.example.david.watchcatalog.models.WatchModel;
 
 /**
- * The class {@code WatchActivity} is used for WatchUI perposes
+ * The class {@code WatchActivity} is used for WatchUI purposes
  *
  * @author david
  */
@@ -24,38 +25,44 @@ public class WatchActivity extends AppCompatActivity {
     private TextView name;
     private TextView price;
     private TextView description;
-
     private int bundle_id;
-    private String bundle_name;
-    private String bundle_price;
-    private String bundle_description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch);
+
+        // Initiate bundle data
+        initBundleVariable(getIntent().getExtras());
+
+        // Link sql instance
+        final SQLiteHelper db = new SQLiteHelper(this);
+        WatchModel watch = db.getWatch(bundle_id);
+
+        // Setup toolbar attrs
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(watch.getName());
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
-        SQLiteHelper db = new SQLiteHelper(this);
-
-        Bundle bundle = getIntent().getExtras();
-        initBundleVariable(bundle);
-
+        // Set view data
         name = (TextView) findViewById(R.id.watchesName);
         price = (TextView) findViewById(R.id.watchesPrice);
         description = (TextView) findViewById(R.id.watchesDescription);
-        name.setText(bundle_name);
-        price.setText("$ " + bundle_price);
-        description.setText(bundle_description);
+        name.setText(watch.getName());
+        price.setText("$ " + watch.getPrice());
+        description.setText(watch.getDescription());
 
-        setAnimations();
-
+        // Set up page image adapter
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         WatchAdapter adapter = new WatchAdapter(this, db.getWatchImageResourceIds(bundle_id));
         viewPager.setAdapter(adapter);
+
+        // Setup animations
+        setAnimations();
     }
 
     /**
@@ -65,15 +72,12 @@ public class WatchActivity extends AppCompatActivity {
      */
     private void initBundleVariable(Bundle bundle) {
         bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
-        bundle_name = bundle.getString(WatchConstants.BUNDLE_NAME);
-        bundle_price = bundle.getString(WatchConstants.BUNDLE_PRICE);
-        bundle_description = bundle.getString(WatchConstants.BUNDLE_DESCRIPTION);
     }
 
     /**
      * Setup activity animations
      */
-    private void setAnimations(){
+    private void setAnimations() {
         Animation slide_up = AnimationUtils.loadAnimation(this,
                 R.anim.slide_up);
         Animation slide_up_1 = AnimationUtils.loadAnimation(this,

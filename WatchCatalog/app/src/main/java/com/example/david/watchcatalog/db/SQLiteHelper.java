@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.david.watchcatalog.models.WatchGalleryModel;
 import com.example.david.watchcatalog.models.WatchModel;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createWatchesTable = "CREATE TABLE watches (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price TEXT, description TEXT, imageId INTEGER)";
         db.execSQL(createWatchesTable);
-        InitiateWatches.init(db);
+        InitiateWatches.initWatches(db);
 
         String createWatchTable = "CREATE TABLE watch (id INTEGER PRIMARY KEY AUTOINCREMENT, watchId INTEGER, imageId INTEGER)";
         db.execSQL(createWatchTable);
@@ -41,29 +42,31 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * @return List<{@code WatchModel}>
+     * Return a list of watches to display in {@code WatchGalleryActivity}
+     *
+     * @return List<WatchGalleryModel>
      */
-    public List<WatchModel> getAllWatches() {
+    public List<WatchGalleryModel> getAllWatches() {
 
-        List<WatchModel> watches = new ArrayList<>();
+        List<WatchGalleryModel> watches = new ArrayList<>();
 
-        String query = "SELECT * FROM " + DATABASE_TABLE_WATCHES + "";
+        String query = "SELECT id, imageId FROM " + DATABASE_TABLE_WATCHES + "";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
 
-        WatchModel watch;
+        WatchGalleryModel watch;
 
         if (cursor.moveToFirst()) {
             do {
-                watch = new WatchModel(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), Integer.parseInt(cursor.getString(4)));
+                watch = new WatchGalleryModel(cursor.getString(0), cursor.getString(1));
+                Log.i(">"+ cursor.getString(0), ">" + cursor.getString(1));
                 watches.add(watch);
             } while (cursor.moveToNext());
         }
         cursor.close();
 
-        Log.i("[sql]Watches size: " + watches.size(), ".....");
         return watches;
     }
 
@@ -89,5 +92,31 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
         }
         return watches;
+    }
+
+    /**
+     * Get a list of watch image resource ids for a specific watch
+     *
+     * @param id watch id
+     * @return List<String> image resource ids
+     */
+    public WatchModel getWatch(int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * from watches WHERE id = " + id, null);
+
+        WatchModel watch = null;
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    watch = new WatchModel(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        return watch;
     }
 }

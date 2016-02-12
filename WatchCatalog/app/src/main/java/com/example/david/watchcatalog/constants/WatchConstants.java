@@ -5,5 +5,5 @@ package com.example.david.watchcatalog.constants;
  */
 public class WatchConstants {
 
-    public static final String BUNDLE_NAME = "name";
+    public static final String BUNDLE_WATCH_ID = "watchId";
 }
