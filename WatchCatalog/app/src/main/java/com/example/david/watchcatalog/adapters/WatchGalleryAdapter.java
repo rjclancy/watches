@@ -12,9 +12,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.example.david.watchcatalog.R;
 import com.example.david.watchcatalog.activities.WatchActivity;
 import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.models.WatchModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -64,7 +66,7 @@ public class WatchGalleryAdapter extends BaseAdapter {
         }
 
         // Needs to be refatored, grid scroll to slow...Maybe use a holder
-        imageView.setImageResource(watches.get(position).getImageId());
+        Picasso.with(ctx).load(watches.get(position).getImageId()).into(imageView);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setLayoutParams(new GridView.LayoutParams(setColumnParams(parent), setColumnParams(parent)));
         imageView.setOnClickListener(new View.OnClickListener() {
