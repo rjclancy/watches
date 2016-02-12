@@ -64,10 +64,10 @@ public class WatchActivity extends AppCompatActivity {
      * @param bundle intent bundle
      */
     private void initBundleVariable(Bundle bundle) {
-        bundle_id = bundle.getInt("watchId");
+        bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
         bundle_name = bundle.getString(WatchConstants.BUNDLE_NAME);
-        bundle_price = bundle.getString("price");
-        bundle_description = bundle.getString("description");
+        bundle_price = bundle.getString(WatchConstants.BUNDLE_PRICE);
+        bundle_description = bundle.getString(WatchConstants.BUNDLE_DESCRIPTION);
     }
 
     /**

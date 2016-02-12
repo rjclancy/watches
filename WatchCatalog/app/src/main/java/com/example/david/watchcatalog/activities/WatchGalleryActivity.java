@@ -3,6 +3,8 @@ package com.example.david.watchcatalog.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.david.watchcatalog.R;
@@ -28,6 +30,12 @@ public class WatchGalleryActivity extends AppCompatActivity {
 
         GridView gridview = (GridView) findViewById(R.id.watchesGrid);
         gridview.setAdapter(new WatchGalleryAdapter(this, watches));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 }
 
