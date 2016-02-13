@@ -16,19 +16,25 @@ import com.example.david.watchcatalog.models.WatchGalleryModel;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class WatchGalleryActivity extends AppCompatActivity {
+
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.watchesGrid) GridView gridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_gallery);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
         final SQLiteHelper db = new SQLiteHelper(this);
         List<WatchGalleryModel> watches = db.getAllWatches();
 
-        GridView gridview = (GridView) findViewById(R.id.watchesGrid);
         gridview.setAdapter(new WatchGalleryAdapter(this, watches));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

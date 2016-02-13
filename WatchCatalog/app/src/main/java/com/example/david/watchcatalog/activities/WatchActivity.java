@@ -15,6 +15,9 @@ import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.db.SQLiteHelper;
 import com.example.david.watchcatalog.models.WatchModel;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * The class {@code WatchActivity} is used for WatchUI purposes
  *
@@ -22,62 +25,49 @@ import com.example.david.watchcatalog.models.WatchModel;
  */
 public class WatchActivity extends AppCompatActivity {
 
-    private TextView name;
-    private TextView price;
-    private TextView description;
+    @Bind(R.id.watchesName) TextView name;
+    @Bind(R.id.watchesPrice) TextView price;
+    @Bind(R.id.watchesDescription) TextView description;
+
+    private SQLiteHelper db;
     private int bundle_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch);
+        ButterKnife.bind(this);
 
         // Initiate bundle data
         initBundleVariable(getIntent().getExtras());
 
         // Link sql instance
-        final SQLiteHelper db = new SQLiteHelper(this);
+        db = new SQLiteHelper(this);
         WatchModel watch = db.getWatch(bundle_id);
 
-        // Setup toolbar attrs
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(watch.getName());
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        // Initialize Toolbar attrs
+        initToolbar(watch.getName());
 
-        // Set view data
-        name = (TextView) findViewById(R.id.watchesName);
-        price = (TextView) findViewById(R.id.watchesPrice);
-        description = (TextView) findViewById(R.id.watchesDescription);
+        // Initialize view data
         name.setText(watch.getName());
         price.setText("$ " + watch.getPrice());
         description.setText(watch.getDescription());
 
-        // Set up page image adapter
+        initPagerAdapter();
+        initAnimations();
+    }
+
+    private void initPagerAdapter(){
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         WatchAdapter adapter = new WatchAdapter(this, db.getWatchImageResourceIds(bundle_id));
         viewPager.setAdapter(adapter);
-
-        // Setup animations
-        setAnimations();
     }
 
-    /**
-     * Get data from bundle and setup variables
-     *
-     * @param bundle intent bundle
-     */
     private void initBundleVariable(Bundle bundle) {
         bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
     }
 
-    /**
-     * Setup activity animations
-     */
-    private void setAnimations() {
+    private void initAnimations() {
         Animation slide_up = AnimationUtils.loadAnimation(this,
                 R.anim.slide_up);
         Animation slide_up_1 = AnimationUtils.loadAnimation(this,
@@ -92,6 +82,17 @@ public class WatchActivity extends AppCompatActivity {
         name.setAnimation(slide_up);
         price.setAnimation(slide_up_1);
         description.setAnimation(slide_up_2);
+    }
+
+    private void initToolbar(String title){
+        // Setup toolbar attrs
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override

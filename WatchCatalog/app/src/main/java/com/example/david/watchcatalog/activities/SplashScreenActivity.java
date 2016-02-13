@@ -4,19 +4,32 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.example.david.watchcatalog.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
+ * This Activity in show for 1 second when app is launched
+ *
  * Created by David on 05/02/2016.
  */
 
 public class SplashScreenActivity extends Activity {
 
+    @Bind(R.id.splashScreenImage) ImageView splashImage;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.splash_screen);
+        ButterKnife.bind(this);
+
+        setupAnimation();
 
         int SPLASH_DISPLAY_LENGTH = 1000;
         new Handler().postDelayed(new Runnable() {
@@ -27,6 +40,13 @@ public class SplashScreenActivity extends Activity {
                 SplashScreenActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+
+    private void setupAnimation() {
+        Animation fade_in = AnimationUtils.loadAnimation(this,
+                R.anim.fade_in);
+
+        splashImage.setAnimation(fade_in);
     }
 }
 

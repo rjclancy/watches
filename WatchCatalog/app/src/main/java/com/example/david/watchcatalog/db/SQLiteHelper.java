@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Db setup and controls
+ *
  * Created by David on 08/02/2016.
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Watches";
     private static final String DATABASE_TABLE_WATCHES = "watches";
+    private static final String DATABASE_TABLE_WATCH = "watch";
     private static final int DATA_BASE_VERSION = 1;
 
     public SQLiteHelper(Context context) {
@@ -61,7 +64,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 watch = new WatchGalleryModel(cursor.getString(0), cursor.getString(1));
-                Log.i(">"+ cursor.getString(0), ">" + cursor.getString(1));
+                Log.i(">" + cursor.getString(0), ">" + cursor.getString(1));
                 watches.add(watch);
             } while (cursor.moveToNext());
         }
@@ -82,7 +85,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         List<String> watches = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT imageId from watch WHERE watchId = " + id, null);
+        Cursor cursor = db.rawQuery("SELECT imageId from " + DATABASE_TABLE_WATCH + " WHERE watchId = " + id, null);
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -98,13 +101,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      * Get a list of watch image resource ids for a specific watch
      *
      * @param id watch id
-     * @return List<String> image resource ids
+     * @return WatchModel a Watch
      */
     public WatchModel getWatch(int id) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * from watches WHERE id = " + id, null);
+        Cursor cursor = db.rawQuery("SELECT * from " + DATABASE_TABLE_WATCHES + " WHERE id = " + id, null);
 
         WatchModel watch = null;
 
