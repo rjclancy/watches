@@ -10,6 +10,7 @@
 
 Contributors : David, Gary, Ronan
 
-//TODO's: Image loading animation
-          WatchActivity toolbar auto color to watch current watch primary color
+//TODO's: 
+* Image loading animation
+* WatchActivity toolbar auto color to watch current watch primary color
           
