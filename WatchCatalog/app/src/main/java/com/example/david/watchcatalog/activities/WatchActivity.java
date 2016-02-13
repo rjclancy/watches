@@ -28,6 +28,7 @@ public class WatchActivity extends AppCompatActivity {
     @Bind(R.id.watchesName) TextView name;
     @Bind(R.id.watchesPrice) TextView price;
     @Bind(R.id.watchesDescription) TextView description;
+    @Bind(R.id.viewPager) ViewPager viewPager;
 
     private SQLiteHelper db;
     private int bundle_id;
@@ -58,7 +59,6 @@ public class WatchActivity extends AppCompatActivity {
     }
 
     private void initPagerAdapter(){
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         WatchAdapter adapter = new WatchAdapter(this, db.getWatchImageResourceIds(bundle_id));
         viewPager.setAdapter(adapter);
     }

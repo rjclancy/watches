@@ -21,11 +21,11 @@ import java.util.List;
  */
 public class WatchGalleryAdapter extends BaseAdapter {
 
-    private Context ctx;
+    private Context context;
     private List<WatchGalleryModel> watches;
 
     public WatchGalleryAdapter(Context ctx, List<WatchGalleryModel> watches) {
-        this.ctx = ctx;
+        this.context = ctx;
         this.watches = watches;
     }
 
@@ -44,13 +44,12 @@ public class WatchGalleryAdapter extends BaseAdapter {
         return 0;
     }
 
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         ImageView imageView;
         if (convertView == null) {
-            imageView = new ImageView(ctx);
+            imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setLayoutParams(new GridView.LayoutParams(setColumnParams(parent), setColumnParams(parent)));
             imageView.setTag(watches.get(position).getId());
@@ -59,7 +58,7 @@ public class WatchGalleryAdapter extends BaseAdapter {
         }
 
         // TODO (David) add loading spinner to Picasso {@see http://stackoverflow.com/questions/24826459/animated-loading-image-in-picasso}
-        Picasso.with(ctx).load(Integer.parseInt(watches.get(position).getResourceId())).into(imageView);
+        Picasso.with(context).load(Integer.parseInt(watches.get(position).getResourceId())).into(imageView);
         return imageView;
     }
 

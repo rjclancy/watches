@@ -24,7 +24,7 @@ public class WatchAdapter extends PagerAdapter {
     private Context context;
     private List<String> watchIds;
     private Animation slide_down;
-    LayoutInflater layoutInflater;
+    private LayoutInflater layoutInflater;
 
     public WatchAdapter(Context context, List<String> watchIds) {
         this.context = context;
