@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -41,7 +42,8 @@ public class WatchGalleryActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), WatchActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt(WatchConstants.BUNDLE_WATCH_ID, Integer.parseInt(view.getTag().toString()));
+                bundle.putInt(WatchConstants.BUNDLE_WATCH_ID, view.getId());
+                Log.i("id","" + view.getId());
                 intent.putExtras(bundle);
                 WatchGalleryActivity.this.startActivity(intent);
             }

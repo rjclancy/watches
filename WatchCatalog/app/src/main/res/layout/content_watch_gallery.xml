@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:stretchMode="columnWidth"
-        android:clickable="true" />
+        android:clickable="true"
+        />
 
 </RelativeLayout>

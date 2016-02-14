@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Db setup and controls
- *
+ * <p/>
  * Created by David on 08/02/2016.
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
@@ -64,12 +64,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 watch = new WatchGalleryModel(cursor.getString(0), cursor.getString(1));
-                Log.i(">" + cursor.getString(0), ">" + cursor.getString(1));
                 watches.add(watch);
             } while (cursor.moveToNext());
         }
         cursor.close();
-
         return watches;
     }
 
@@ -93,12 +91,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                     watches.add(cursor.getString(0));
                 } while (cursor.moveToNext());
             }
+            cursor.close();
         }
         return watches;
     }
 
     /**
-     * Get a list of watch image resource ids for a specific watch
+     * Return a specific watch
      *
      * @param id watch id
      * @return WatchModel a Watch

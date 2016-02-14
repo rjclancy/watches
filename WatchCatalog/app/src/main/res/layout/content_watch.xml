@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,45 +9,39 @@
     tools:context=".WatchActivity"
     tools:showIn="@layout/activity_watch">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:background="#ffffff">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </android.support.v4.view.ViewPager>
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:background="#ffffff">
+        </android.support.v4.view.ViewPager>
+
+        <TextView
+            android:id="@+id/watchesName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/watchesName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#000000"
-                android:textSize="24sp" />
+        <TextView
+            android:id="@+id/watchesPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/watchesPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/watchesDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/watchesDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

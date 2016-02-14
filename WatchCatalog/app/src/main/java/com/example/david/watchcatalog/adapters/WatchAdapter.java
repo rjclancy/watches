@@ -17,6 +17,8 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 /**
+ * WatchActivity ViewPager adapter
+ *
  * Created by David on 04/02/2016.
  */
 public class WatchAdapter extends PagerAdapter {
