@@ -13,7 +13,7 @@ Contributors : David, Gary, Ronan
 
 //TODO's: 
 * Spinner animation for picasso image loading
-* WatchActivity toolbar color to current watch primary color
+* ~~WatchActivity toolbar color to current watch primary color~~
 * Change models to parcelable object
 * Display numbered Watch Pager image position
           
