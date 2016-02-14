@@ -2,15 +2,18 @@
 
 ## This app was created with the following implementations : 
 
+* Picasso
 * ButterKnife
 * ViewPager
 * SQLite DB
 * Animations
-* Picasso
+* Adapters
 
 Contributors : David, Gary, Ronan
 
 //TODO's: 
-* Image loading animation
-* WatchActivity toolbar auto color to current watch primary color
+* Spinner animation for picasso image loading
+* WatchActivity toolbar color to current watch primary color
+* Change models to parcelable object
+* Display numbered Watch Pager image position
           
