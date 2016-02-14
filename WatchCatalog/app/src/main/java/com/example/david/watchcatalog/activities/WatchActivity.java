@@ -1,5 +1,6 @@
 package com.example.david.watchcatalog.activities;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,9 @@ import com.example.david.watchcatalog.adapters.WatchAdapter;
 import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.db.SQLiteHelper;
 import com.example.david.watchcatalog.models.WatchModel;
+import com.example.david.watchcatalog.utils.Utils;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,13 +29,19 @@ import butterknife.ButterKnife;
  */
 public class WatchActivity extends AppCompatActivity {
 
-    @Bind(R.id.watchesName) TextView name;
-    @Bind(R.id.watchesPrice) TextView price;
-    @Bind(R.id.watchesDescription) TextView description;
-    @Bind(R.id.viewPager) ViewPager viewPager;
+    @Bind(R.id.watchesName)
+    TextView name;
+    @Bind(R.id.watchesPrice)
+    TextView price;
+    @Bind(R.id.watchesDescription)
+    TextView description;
+    @Bind(R.id.viewPager)
+    ViewPager viewPager;
 
     private SQLiteHelper db;
     private int bundle_id;
+    private List<String> imageResourceIds;
+    private WatchModel watch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +54,8 @@ public class WatchActivity extends AppCompatActivity {
 
         // Link sql instance
         db = new SQLiteHelper(this);
-        WatchModel watch = db.getWatch(bundle_id);
+        watch = db.getWatch(bundle_id);
+        imageResourceIds = db.getWatchImageResourceIds(bundle_id);
 
         // Initialize Toolbar attrs
         initToolbar(watch.getName());
@@ -58,8 +69,8 @@ public class WatchActivity extends AppCompatActivity {
         initAnimations();
     }
 
-    private void initPagerAdapter(){
-        WatchAdapter adapter = new WatchAdapter(this, db.getWatchImageResourceIds(bundle_id));
+    private void initPagerAdapter() {
+        WatchAdapter adapter = new WatchAdapter(this, imageResourceIds);
         viewPager.setAdapter(adapter);
     }
 
@@ -84,14 +95,16 @@ public class WatchActivity extends AppCompatActivity {
         description.setAnimation(slide_up_2);
     }
 
-    private void initToolbar(String title){
+    private void initToolbar(String title) {
         // Setup toolbar attrs
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Utils.getDetailToolbarColorFromImage(this, Integer.valueOf(imageResourceIds.get(0)))));
         }
     }
 
