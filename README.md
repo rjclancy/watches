@@ -16,4 +16,6 @@ Contributors : David, Gary, Ronan
 * ~~WatchActivity toolbar color to current watch primary color~~
 * Change models to parcelable object
 * Display numbered Watch Pager image position
+* Implement Dagger 2
+* Refactor out GridView to be a RecyclerView
           
