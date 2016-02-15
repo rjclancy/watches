@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.david.watchcatalog.R;
-import com.example.david.watchcatalog.adapters.WatchGalleryAdapter;
+import com.example.david.watchcatalog.adapters.WatchGalleryActivityGridAdapter;
 import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.db.SQLiteHelper;
 import com.example.david.watchcatalog.models.WatchGalleryModel;
@@ -35,7 +35,7 @@ public class WatchGalleryActivity extends AppCompatActivity {
         final SQLiteHelper db = new SQLiteHelper(this);
         List<WatchGalleryModel> watches = db.getAllWatches();
 
-        gridview.setAdapter(new WatchGalleryAdapter(this, watches));
+        gridview.setAdapter(new WatchGalleryActivityGridAdapter(this, watches));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

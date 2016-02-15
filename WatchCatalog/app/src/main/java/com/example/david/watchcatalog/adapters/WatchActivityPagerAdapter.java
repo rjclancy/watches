@@ -21,14 +21,14 @@ import butterknife.ButterKnife;
  *
  * Created by David on 04/02/2016.
  */
-public class WatchAdapter extends PagerAdapter {
+public class WatchActivityPagerAdapter extends PagerAdapter {
 
     private Context context;
     private List<String> watchIds;
     private Animation slide_down;
     private LayoutInflater layoutInflater;
 
-    public WatchAdapter(Context context, List<String> watchIds) {
+    public WatchActivityPagerAdapter(Context context, List<String> watchIds) {
         this.context = context;
         this.watchIds = watchIds;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

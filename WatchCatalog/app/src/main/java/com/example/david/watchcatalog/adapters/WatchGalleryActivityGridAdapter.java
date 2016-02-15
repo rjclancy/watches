@@ -21,12 +21,12 @@ import java.util.List;
  * <p/>
  * Created by David on 04/02/2016.
  */
-public class WatchGalleryAdapter extends BaseAdapter {
+public class WatchGalleryActivityGridAdapter extends BaseAdapter {
 
     private Context context;
     private List<WatchGalleryModel> watches;
 
-    public WatchGalleryAdapter(Context context, List<WatchGalleryModel> watches) {
+    public WatchGalleryActivityGridAdapter(Context context, List<WatchGalleryModel> watches) {
         this.context = context;
         this.watches = watches;
     }

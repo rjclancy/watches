@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * This Activity in show for 1 second when app is launched
+ * This Activity will show for 1 second when app is launched
  * <p/>
  * Created by David on 05/02/2016.
  */

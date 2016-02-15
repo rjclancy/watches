@@ -7,20 +7,20 @@ import android.graphics.BitmapFactory;
 import org.michaelevans.colorart.library.ColorArt;
 
 /**
- * The class {@code Utils} is used to hold app common helper method
+ * The class {@code UIUtils} is used to hold app common helper methods
  * <p/>
  * Created by ronan on 2/14/2016.
  */
-public class Utils {
+public class UIUtils {
 
     /**
-     * Get Detail color from watch image
+     * Get Detail color from an image
      *
      * @param context    context
-     * @param resourceId image to get color from
-     * @return integer value of Detail color from watch image
+     * @param resourceId image id to get color from
+     * @return integer value of Detail color from an image
      */
-    public static int getDetailToolbarColorFromImage(Context context, int resourceId) {
+    public static int getDetailColorFromImage(Context context, int resourceId) {
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
         ColorArt colorArt = new ColorArt(bitmap);
         return colorArt.getDetailColor();

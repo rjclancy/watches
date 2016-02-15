@@ -11,11 +11,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.example.david.watchcatalog.R;
-import com.example.david.watchcatalog.adapters.WatchAdapter;
+import com.example.david.watchcatalog.adapters.WatchActivityPagerAdapter;
 import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.db.SQLiteHelper;
 import com.example.david.watchcatalog.models.WatchModel;
-import com.example.david.watchcatalog.utils.Utils;
+import com.example.david.watchcatalog.utils.UIUtils;
 
 import java.util.List;
 
@@ -29,14 +29,10 @@ import butterknife.ButterKnife;
  */
 public class WatchActivity extends AppCompatActivity {
 
-    @Bind(R.id.watchesName)
-    TextView name;
-    @Bind(R.id.watchesPrice)
-    TextView price;
-    @Bind(R.id.watchesDescription)
-    TextView description;
-    @Bind(R.id.viewPager)
-    ViewPager viewPager;
+    @Bind(R.id.watchesName) TextView name;
+    @Bind(R.id.watchesPrice) TextView price;
+    @Bind(R.id.watchesDescription) TextView description;
+    @Bind(R.id.viewPager) ViewPager viewPager;
 
     private SQLiteHelper db;
     private int bundle_id;
@@ -70,7 +66,7 @@ public class WatchActivity extends AppCompatActivity {
     }
 
     private void initPagerAdapter() {
-        WatchAdapter adapter = new WatchAdapter(this, imageResourceIds);
+        WatchActivityPagerAdapter adapter = new WatchActivityPagerAdapter(this, imageResourceIds);
         viewPager.setAdapter(adapter);
     }
 
@@ -104,7 +100,7 @@ public class WatchActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Utils.getDetailToolbarColorFromImage(this, Integer.valueOf(imageResourceIds.get(0)))));
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(UIUtils.getDetailColorFromImage(this, Integer.valueOf(imageResourceIds.get(0)))));
         }
     }
 
