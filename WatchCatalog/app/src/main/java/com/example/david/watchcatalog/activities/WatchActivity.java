@@ -15,6 +15,7 @@ import com.example.david.watchcatalog.constants.WatchConstants;
 import com.example.david.watchcatalog.db.SQLiteHelper;
 import com.example.david.watchcatalog.listeners.TabLayoutListener;
 import com.example.david.watchcatalog.models.WatchModel;
+import com.example.david.watchcatalog.utils.AnimationUtils;
 import com.example.david.watchcatalog.utils.UIUtils;
 
 import java.util.List;
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 public class WatchActivity extends AppCompatActivity {
 
     @Bind(R.id.viewPager) ViewPager viewPager;
-    @Bind(R.id.tab_layout)  TabLayout tabLayout;
+    @Bind(R.id.tab_layout) TabLayout tabLayout;
     @Bind(R.id.watchInfoPager) ViewPager tabViewPager;
 
     private int bundle_id;
@@ -53,13 +54,14 @@ public class WatchActivity extends AppCompatActivity {
         // Initialize Toolbar attrs
         initToolbar(watch.getName());
 
-        setupTabs();
+        initWatchInfoTabs();
         initPagerAdapter();
     }
 
     private void initPagerAdapter() {
         WatchActivityPagerAdapter adapter = new WatchActivityPagerAdapter(this, imageResourceIds);
         viewPager.setAdapter(adapter);
+        viewPager.setAnimation(AnimationUtils.get_slide_down(this, 500, 500));
     }
 
     private void initBundleVariable(Bundle bundle) {
@@ -78,11 +80,10 @@ public class WatchActivity extends AppCompatActivity {
         }
     }
 
-    private void setupTabs() {
-        tabLayout.addTab(tabLayout.newTab().setText("Info"));
-        tabLayout.addTab(tabLayout.newTab().setText("Comments"));
+    private void initWatchInfoTabs() {
+        tabLayout.addTab(tabLayout.newTab().setText(WatchConstants.WATCH_TAB_INFO));
+        tabLayout.addTab(tabLayout.newTab().setText(WatchConstants.WATCH_TAB_COMMENTS));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
         final WatchActivityFragmentAdapter adapter = new WatchActivityFragmentAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         tabViewPager.setAdapter(adapter);

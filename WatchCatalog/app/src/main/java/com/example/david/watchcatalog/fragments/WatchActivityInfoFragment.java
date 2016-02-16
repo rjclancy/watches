@@ -34,7 +34,7 @@ public class WatchActivityInfoFragment extends Fragment {
         WatchModel watch = db.getWatch(bundle_id);
 
         name.setText(watch.getName());
-        price.setText("$ " + watch.getPrice());
+        price.setText(WatchConstants.MONEY_DOLLAR_SIGN + watch.getPrice());
         description.setText(watch.getDescription());
 
         initAnimations();
@@ -49,6 +49,10 @@ public class WatchActivityInfoFragment extends Fragment {
     }
 
     private void initBundleVariable(Bundle bundle) {
-        bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
+        if (bundle != null) {
+            bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
+        } else {
+            bundle_id = -1;
+        }
     }
 }

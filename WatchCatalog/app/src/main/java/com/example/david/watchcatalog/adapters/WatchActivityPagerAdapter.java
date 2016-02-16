@@ -5,12 +5,10 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.david.watchcatalog.R;
-import com.example.david.watchcatalog.utils.AnimationUtils;
 
 import java.util.List;
 
@@ -23,16 +21,12 @@ import butterknife.ButterKnife;
  */
 public class WatchActivityPagerAdapter extends PagerAdapter {
 
-    private Context context;
     private List<String> watchIds;
     private LayoutInflater layoutInflater;
-    private Animation slide_down;
 
     public WatchActivityPagerAdapter(Context context, List<String> watchIds) {
-        this.context = context;
         this.watchIds = watchIds;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        startPagerAnimation();
     }
 
     @Override
@@ -50,18 +44,12 @@ public class WatchActivityPagerAdapter extends PagerAdapter {
         View item_view = layoutInflater.inflate(R.layout.watch_pager_item, container, false);
         ImageView imageView = ButterKnife.findById(item_view, R.id.watchPagerImage);
         imageView.setImageResource(Integer.parseInt(watchIds.get(position)));
-        imageView.setAnimation(slide_down);
         container.addView(item_view);
-
         return item_view;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((LinearLayout) object);
-    }
-
-    private void startPagerAnimation() {
-        slide_down = AnimationUtils.get_slide_down(context, 500, 500);
     }
 }

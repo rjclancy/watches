@@ -41,7 +41,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     /**
@@ -51,13 +50,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      */
     public List<WatchGalleryModel> getAllWatches() {
 
-        List<WatchGalleryModel> watches = new ArrayList<>();
-
-        String query = "SELECT id, imageId FROM " + DATABASE_TABLE_WATCHES + "";
-
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery(query, null);
+        List<WatchGalleryModel> watches = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT id, imageId FROM " + DATABASE_TABLE_WATCHES + "", null);
 
         WatchGalleryModel watch;
 

@@ -29,7 +29,7 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.splash_screen);
         ButterKnife.bind(this);
 
-        setupAnimations();
+        setAnimations();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -41,7 +41,7 @@ public class SplashScreenActivity extends Activity {
         }, WatchConstants.SPLASH_DISPLAY_LENGTH);
     }
 
-    private void setupAnimations() {
+    private void setAnimations() {
         splashImage.setAnimation(AnimationUtils.get_fade_in(this, 1000, 0));
     }
 }
