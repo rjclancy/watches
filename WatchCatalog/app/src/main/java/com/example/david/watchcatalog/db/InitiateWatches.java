@@ -51,49 +51,49 @@ public class InitiateWatches {
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(5,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch5_base + ")");
+                + "values(5,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete', " + R.drawable.watch5_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(6,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch6_base + ")");
+                + "values(6,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch6_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(7,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch7_base + ")");
+                + "values(7,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch7_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(8,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch8_base + ")");
+                + "values(8,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch8_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(9,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch9_base + ")");
+                + "values(9,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch9_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(10,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch10_base + ")");
+                + "values(10,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch10_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(11,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch11_base + ")");
+                + "values(11,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch11_base + ")");
         db.execSQL("insert into " + DATABASE_TABLE_WATCHES + "(" + KEY_ID + ","
                 + KEY_NAME + ", "
                 + KEY_PRICE + ","
                 + KEY_DESCRIPTION + ", "
                 + KEY_IMAGE_ID + ") "
-                + "values(12,'Sturhling Original Silver', '34', 'the watch', " + R.drawable.watch12_base + ")");
+                + "values(12,'Sturhling Original Silver', '34', 'Please note personalized items are considered final sale. No returns or exchanges. We need a little more time to create your amazing, personalized piece. Please allow an additional 5-7 business days processing time for engraving and embossing orders. After processing is complete, your order will be shipped according to the selected shipping method.', " + R.drawable.watch12_base + ")");
     }
 
     public static void initWatchImages(SQLiteDatabase db) {

@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.SyncStateContract;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.david.watchcatalog.R;
 import com.example.david.watchcatalog.constants.WatchConstants;
+import com.example.david.watchcatalog.utils.AnimationUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,7 +29,7 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.splash_screen);
         ButterKnife.bind(this);
 
-        setupAnimation();
+        setupAnimations();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -43,11 +41,8 @@ public class SplashScreenActivity extends Activity {
         }, WatchConstants.SPLASH_DISPLAY_LENGTH);
     }
 
-    private void setupAnimation() {
-        Animation fade_in = AnimationUtils.loadAnimation(this,
-                R.anim.fade_in);
-
-        splashImage.setAnimation(fade_in);
+    private void setupAnimations() {
+        splashImage.setAnimation(AnimationUtils.get_fade_in(this, 1000, 0));
     }
 }
 

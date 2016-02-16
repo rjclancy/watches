@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".WatchActivity"
     tools:showIn="@layout/activity_watch">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -21,27 +20,19 @@
             android:background="#ffffff">
         </android.support.v4.view.ViewPager>
 
-        <TextView
-            android:id="@+id/watchesName"
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textSize="24sp" />
+            android:layout_below="@+id/viewPager"
+            android:background="#846c6c6c"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-        <TextView
-            android:id="@+id/watchesPrice"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/watchInfoPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/watchesDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="16sp" />
-
-    </LinearLayout>
+            android:layout_height="200dp"
+            android:layout_below="@id/tab_layout" />
+    </RelativeLayout>
 </ScrollView>

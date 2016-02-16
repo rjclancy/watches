@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.david.watchcatalog.R;
+import com.example.david.watchcatalog.utils.AnimationUtils;
 
 import java.util.List;
 
@@ -18,15 +18,15 @@ import butterknife.ButterKnife;
 
 /**
  * WatchActivity ViewPager adapter
- *
+ * <p/>
  * Created by David on 04/02/2016.
  */
 public class WatchActivityPagerAdapter extends PagerAdapter {
 
     private Context context;
     private List<String> watchIds;
-    private Animation slide_down;
     private LayoutInflater layoutInflater;
+    private Animation slide_down;
 
     public WatchActivityPagerAdapter(Context context, List<String> watchIds) {
         this.context = context;
@@ -62,8 +62,6 @@ public class WatchActivityPagerAdapter extends PagerAdapter {
     }
 
     private void startPagerAnimation() {
-        slide_down = AnimationUtils.loadAnimation(context,
-                R.anim.slide_down);
-        slide_down.setStartOffset(500);
+        slide_down = AnimationUtils.get_slide_down(context, 500, 500);
     }
 }
