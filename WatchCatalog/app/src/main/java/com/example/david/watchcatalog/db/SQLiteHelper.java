@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.david.watchcatalog.models.WatchGalleryModel;
 import com.example.david.watchcatalog.models.WatchModel;
@@ -21,7 +20,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Watches";
     private static final String DATABASE_TABLE_WATCHES = "watches";
-    private static final String DATABASE_TABLE_WATCH = "watch";
+    private static final String DATABASE_TABLE_WATCH_IMAGES = "watch_images";
     private static final int DATA_BASE_VERSION = 1;
 
     public SQLiteHelper(Context context) {
@@ -34,9 +33,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(createWatchesTable);
         InitiateWatches.initWatches(db);
 
-        String createWatchTable = "CREATE TABLE watch (id INTEGER PRIMARY KEY AUTOINCREMENT, watchId INTEGER, imageId INTEGER)";
+        String createWatchTable = "CREATE TABLE watch_images (id INTEGER PRIMARY KEY AUTOINCREMENT, watchId INTEGER, imageId INTEGER)";
         db.execSQL(createWatchTable);
         InitiateWatches.initWatchImages(db);
+
+        /*String createWatchCommentsTable = "CREATE TABLE watch_comments (id INTEGER PRIMARY KEY AUTOINCREMENT, watchId INTEGER, comment TEXT, profileImageId TEXT)";
+        db.execSQL(createWatchCommentsTable);*/
     }
 
     @Override
@@ -80,7 +82,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         List<String> watches = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT imageId from " + DATABASE_TABLE_WATCH + " WHERE watchId = " + id, null);
+        Cursor cursor = db.rawQuery("SELECT imageId from " + DATABASE_TABLE_WATCH_IMAGES + " WHERE watchId = " + id, null);
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {

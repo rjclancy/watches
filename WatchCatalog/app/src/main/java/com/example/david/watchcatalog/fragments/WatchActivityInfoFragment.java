@@ -28,7 +28,7 @@ public class WatchActivityInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_watch_info, container, false);
         ButterKnife.bind(this, view);
-        initBundleVariable(getActivity().getIntent().getExtras());
+        initBundleVariables(getActivity().getIntent().getExtras());
 
         SQLiteHelper db = new SQLiteHelper(getActivity().getApplicationContext());
         WatchModel watch = db.getWatch(bundle_id);
@@ -48,7 +48,7 @@ public class WatchActivityInfoFragment extends Fragment {
         description.setAnimation(AnimationUtils.get_slide_up(this.getContext(), 1350, 0));
     }
 
-    private void initBundleVariable(Bundle bundle) {
+    private void initBundleVariables(Bundle bundle) {
         if (bundle != null) {
             bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
         } else {

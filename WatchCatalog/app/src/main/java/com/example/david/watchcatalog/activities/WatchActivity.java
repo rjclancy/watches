@@ -1,7 +1,9 @@
 package com.example.david.watchcatalog.activities;
 
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -33,9 +35,11 @@ public class WatchActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager viewPager;
     @Bind(R.id.tab_layout) TabLayout tabLayout;
     @Bind(R.id.watchInfoPager) ViewPager tabViewPager;
+    @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
 
     private int bundle_id;
     private List<String> imageResourceIds;
+    private int imageDetailColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +48,19 @@ public class WatchActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         // Initiate bundle data
-        initBundleVariable(getIntent().getExtras());
+        initBundleVariables(getIntent().getExtras());
 
         // Link sql instance
         SQLiteHelper db = new SQLiteHelper(this);
         WatchModel watch = db.getWatch(bundle_id);
         imageResourceIds = db.getWatchImageResourceIds(bundle_id);
+        imageDetailColor = UIUtils.getDetailColorFromImage(this, Integer.valueOf(imageResourceIds.get(0)));
 
         // Initialize Toolbar attrs
         initToolbar(watch.getName());
+        setCollapsingToolbarTheme();
 
-        initWatchInfoTabs();
+        initWatchFragmentTabs();
         initPagerAdapter();
     }
 
@@ -64,7 +70,7 @@ public class WatchActivity extends AppCompatActivity {
         viewPager.setAnimation(AnimationUtils.get_slide_down(this, 500, 500));
     }
 
-    private void initBundleVariable(Bundle bundle) {
+    private void initBundleVariables(Bundle bundle) {
         bundle_id = bundle.getInt(WatchConstants.BUNDLE_WATCH_ID);
     }
 
@@ -76,11 +82,11 @@ public class WatchActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(UIUtils.getDetailColorFromImage(this, Integer.valueOf(imageResourceIds.get(0)))));
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(imageDetailColor));
         }
     }
 
-    private void initWatchInfoTabs() {
+    private void initWatchFragmentTabs() {
         tabLayout.addTab(tabLayout.newTab().setText(WatchConstants.WATCH_TAB_INFO));
         tabLayout.addTab(tabLayout.newTab().setText(WatchConstants.WATCH_TAB_COMMENTS));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -88,9 +94,18 @@ public class WatchActivity extends AppCompatActivity {
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         tabViewPager.setAdapter(adapter);
         tabViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setSelectedTabIndicatorColor(UIUtils.getDetailColorFromImage(this, Integer.valueOf(imageResourceIds.get(0))));
+        tabLayout.setSelectedTabIndicatorColor(imageDetailColor);
         tabLayout.setOnTabSelectedListener(new TabLayoutListener(tabViewPager));
     }
+
+    private void setCollapsingToolbarTheme(){
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+        collapsingToolbarLayout.setContentScrimColor(imageDetailColor);
+        collapsingToolbarLayout.setBackgroundColor(imageDetailColor);
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

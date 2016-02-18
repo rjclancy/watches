@@ -1,7 +1,10 @@
 package com.example.david.watchcatalog.utils;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
+import android.widget.ScrollView;
 
 import com.example.david.watchcatalog.R;
 
